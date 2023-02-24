@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  vuejs-app:
+    build: .
+    ports:
+      - "13003:80"
+      - "8003:80"
+    expose:
+      - 80
+    restart: always
+networks:
+  default:
+    external:
+      name: nginx-proxy

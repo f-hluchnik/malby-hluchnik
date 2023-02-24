@@ -11,16 +11,16 @@
           <!-- Item 2 -->
           <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle"/>
           <!-- <label for="slide-item-2"><span @click="activeTab = 'tab2'; setTab2Background();">tapety</span></label> -->
-          <label for="slide-item-2"><span @click="handleClick('second', 'tab2')">tapety</span></label>
+          <label for="slide-item-2"><span @click="handleClick('second', 'tab2')">malby-nátěry</span></label>
           
           <!-- Item 3 -->
           <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
-          <label for="slide-item-3"><span @click="handleClick('third', 'tab3')">dekorační techniky</span></label>
+          <label for="slide-item-3"><span @click="handleClick('third', 'tab3')">tapety</span></label>
           
           <!-- Item 4 -->
           <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
           <!-- <label for="slide-item-4"><span @click="activeTab = 'tab4'; setTab4Background();">malby-nátěry</span></label> -->
-          <label for="slide-item-4"><span @click="handleClick('fourth', 'tab4')">malby-nátěry</span></label>
+          <label for="slide-item-4"><span @click="handleClick('fourth', 'tab4')">dekorační techniky</span></label>
           
           <div class="clear"></div>
           
@@ -31,12 +31,19 @@
           
       </nav>
       <template v-if="activeTab === 'tab1'">
-        <h3>kontaktní informace</h3>
-        <div>mobil: 739 027 974</div>
-        <div>e-mail: eda.hluchnik@seznam.cz</div>
+        <div class="content-box grid grid-content">
+          <div class="bg-image"></div>
+          <div class="content">
+            <div>
+              Provádíme veškeré malířské a natěračské práce se specializací na tapety a dekorační techniky.<br><br>
+            </div>
+            <div>kontaktní informace</div>
+            <div>mobil: 739 027 974</div>
+            <div>e-mail: eda.hluchnik@seznam.cz</div>
+          </div>
+        </div>
       </template>
       <template v-else-if="activeTab === 'tab2'">
-        <!-- <div class="first" :class="classIs"> -->
         <div class="content-box">
           <img src="./assets/images/background_default.jpg" alt="" class="image"> 
         </div>
@@ -89,6 +96,13 @@ export default {
   overflow: hidden;
 }
 
+.grid-content {
+  max-width: 100vw;
+  max-height: 500px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 200px 500px;
+}
+
 body {
   margin: 0px;
 }
@@ -105,6 +119,34 @@ body {
   object-fit: cover;
 }
 
+.bg-image {
+  background-image: url("./assets/images/background_default.jpg");
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  grid-row: 0;
+  width: 100vw;
+  height: 120%;
+  padding-top: 60%;
+  background-size: cover;
+}
+
+.content {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  margin: auto;
+  grid-row: 2;
+  grid-column: 1/-1;
+  z-index: 2;
+  min-width: 450px;
+  max-width: 100vw;
+  width: 60%;
+  padding: 20px;
+  text-align: center;
+}
+
 .footer {
   grid-row: -2;
   grid-column: 1/-1;
@@ -113,24 +155,6 @@ body {
   font-size: 13px;
   padding: 15px;
   text-align: left;
-}
-
-.first {
-  background: #b60505;
-  background-image: url('./assets/images/background_default.jpg');
-}
-
-.second {
-  background: #e3c710;
-  background-image: url('./assets/images/background_wallpaper.jpg');
-}
-
-.third {
-  background:#1b781b;
-}
-
-.fourth {
-  background: #0d0d9f;
 }
 
 #app {
@@ -142,7 +166,7 @@ body {
 }
 
 .logo {
-  width: 20%;
+  width: 30%;
   min-width: 20%;
   max-width: 100%;
   height: auto;

@@ -1,0 +1,16 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  only:
+    - main
+    - master
+  script:
+  - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - scp -o StrictHostKeyChecking=no -P $PORT -r "${PWD}" $USER@$DJANGOWALD:/home/$USER
+  - ssh -o StrictHostKeyChecking=no -p $PORT $USER@$DJANGOWALD "cd '${PWD##*/}' && docker compose up --build -d && exit"
