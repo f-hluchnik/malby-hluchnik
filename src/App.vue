@@ -6,21 +6,21 @@
           <!-- Item 1 -->
           <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
           <!-- <label for="slide-item-1"><span @click="activeTab = 'tab1'; setTab1Background();">kontakt</span></label> -->
-          <label for="slide-item-1"><span @click="handleClick('first', 'tab1')">kontakt</span></label>
+          <label for="slide-item-1"><span @click="handleClick('tab1')">kontakt</span></label>
           
           <!-- Item 2 -->
           <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle"/>
           <!-- <label for="slide-item-2"><span @click="activeTab = 'tab2'; setTab2Background();">tapety</span></label> -->
-          <label for="slide-item-2"><span @click="handleClick('second', 'tab2')">malby-nátěry</span></label>
+          <label for="slide-item-2"><span @click="handleClick('tab2')">malby-nátěry</span></label>
           
           <!-- Item 3 -->
           <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
-          <label for="slide-item-3"><span @click="handleClick('third', 'tab3')">tapety</span></label>
+          <label for="slide-item-3"><span @click="handleClick('tab3')">tapety</span></label>
           
           <!-- Item 4 -->
           <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
           <!-- <label for="slide-item-4"><span @click="activeTab = 'tab4'; setTab4Background();">malby-nátěry</span></label> -->
-          <label for="slide-item-4"><span @click="handleClick('fourth', 'tab4')">dekorační techniky</span></label>
+          <label for="slide-item-4"><span @click="handleClick('tab4')">dekorační techniky</span></label>
           
           <div class="clear"></div>
           
@@ -44,18 +44,18 @@
         </div>
       </template>
       <template v-else-if="activeTab === 'tab2'">
-        <div class="content-box">
-          <img src="./assets/images/background_default.jpg" alt="" class="image"> 
+        <div class="content-box grid grid-content">
+          <div class="tab2bg tabbg"></div>
         </div>
       </template>
       <template v-else-if="activeTab === 'tab3'">
-        <div class="content-box">
-          <img src="./assets/images/background_wallpaper.jpg" alt="" class="image"> 
+        <div class="content-box grid grid-content">
+            <div class="tab3bg tabbg"></div>
         </div>
       </template>
       <template v-else-if="activeTab === 'tab4'">
-        <div class="content-box">
-          <img src="./assets/images/background_deco.jpg" alt="" class="image"> 
+        <div class="content-box grid grid-content">
+            <div class="tab4bg tabbg"></div>
         </div>
       </template>
     </div>
@@ -70,14 +70,12 @@ export default {
   name: 'MalbyHluchnik',
   data() {
     return {
-      activeTab: 'tab1',
-      classIs: 'first'
+      activeTab: 'tab1'
     };
   },
   methods: {
-    handleClick(arg, tab) {
+    handleClick(tab) {
       this.activeTab = tab;
-      this.classIs = arg;
     },
   }
 }
@@ -100,7 +98,7 @@ export default {
   max-width: 100vw;
   max-height: 500px;
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 200px 500px;
+  grid-template-rows: 50px 200px 800px;
 }
 
 body {
@@ -113,10 +111,24 @@ body {
   overflow: hidden;
 }
 
-.image {
+.tab2bg {
+  background-image: url("./assets/images/background_default.jpg");
+}
+
+.tab3bg {
+  background-image: url("./assets/images/background_wallpaper.jpg");
+}
+
+.tab4bg {
+  background-image: url("./assets/images/background_deco.jpg");
+}
+
+.tabbg {
+  grid-row: 0;
   width: 100vw;
-  height: 100%;
-  object-fit: cover;
+  height: 200%;
+  padding-top: 60%;
+  background-size: cover;
 }
 
 .bg-image {
@@ -125,7 +137,7 @@ body {
   -webkit-filter: blur(4px);
   grid-row: 0;
   width: 100vw;
-  height: 120%;
+  height: 200%;
   padding-top: 60%;
   background-size: cover;
 }
@@ -140,7 +152,6 @@ body {
   grid-row: 2;
   grid-column: 1/-1;
   z-index: 2;
-  min-width: 450px;
   max-width: 100vw;
   width: 60%;
   padding: 20px;
