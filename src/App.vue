@@ -32,10 +32,10 @@
       </nav>
       <template v-if="activeTab === 'tab1'">
         <div class="content-box grid grid-content">
-          <div class="bg-image"></div>
+          <div class="tab1bg background blurred"></div>
           <div class="content">
             <div>
-              Provádíme veškeré malířské a natěračské práce se specializací na tapety a dekorační techniky.<br><br>
+              Provádíme veškeré malířské a&nbsp;natěračské práce se specializací na tapety a&nbsp;dekorační techniky.<br><br>
             </div>
             <div>kontaktní informace</div>
             <div>mobil: 739 027 974</div>
@@ -45,17 +45,23 @@
       </template>
       <template v-else-if="activeTab === 'tab2'">
         <div class="content-box grid grid-content">
-          <div class="tab2bg tabbg"></div>
+          <div class="tab2bg background"></div>
         </div>
       </template>
       <template v-else-if="activeTab === 'tab3'">
         <div class="content-box grid grid-content">
-            <div class="tab3bg tabbg"></div>
+            <div class="tab3bg background blurred"></div>
+            <div class="content picture-content width">
+              <img src="./assets/images/background_wallpaper.jpg" alt="decorated wall" class="width-picture">
+            </div>
         </div>
       </template>
       <template v-else-if="activeTab === 'tab4'">
         <div class="content-box grid grid-content">
-            <div class="tab4bg tabbg"></div>
+            <div class="tab4bg background blurred"></div>
+            <div class="content picture-content height">
+              <img src="./assets/images/background_deco.jpg" alt="decorated wall" class="height-picture">
+            </div>
         </div>
       </template>
     </div>
@@ -98,7 +104,7 @@ export default {
   max-width: 100vw;
   max-height: 500px;
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 200px 800px;
+  grid-template-rows: 50px 100vh;
 }
 
 body {
@@ -109,6 +115,10 @@ body {
   max-width: 100vw;
   max-height: 500px;
   overflow: hidden;
+}
+
+.tab1bg {
+  background-image: url("./assets/images/background_default.jpg");
 }
 
 .tab2bg {
@@ -123,23 +133,16 @@ body {
   background-image: url("./assets/images/background_deco.jpg");
 }
 
-.tabbg {
+.background {
   grid-row: 0;
   width: 100vw;
-  height: 200%;
   padding-top: 60%;
   background-size: cover;
 }
 
-.bg-image {
-  background-image: url("./assets/images/background_default.jpg");
+.blurred {
   filter: blur(4px);
   -webkit-filter: blur(4px);
-  grid-row: 0;
-  width: 100vw;
-  height: 200%;
-  padding-top: 60%;
-  background-size: cover;
 }
 
 .content {
@@ -149,6 +152,7 @@ body {
   font-weight: bold;
   border: 3px solid #f1f1f1;
   margin: auto;
+  margin-top: 0%;
   grid-row: 2;
   grid-column: 1/-1;
   z-index: 2;
@@ -156,6 +160,29 @@ body {
   width: 60%;
   padding: 20px;
   text-align: center;
+}
+
+.picture-content {
+  width: 50%;
+  padding: 0%;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.width {
+  width: 40%;
+}
+
+.height {
+  width: 30%;
+}
+
+.height-picture {
+  max-width: 100%;
+}
+
+.width-picture {
+  max-width: 100%;
 }
 
 .footer {
@@ -265,4 +292,47 @@ body {
 .slidemenu #slide-item-2:checked ~ .slider .bar{ margin-left: 25%; background: #e3c710;}
 .slidemenu #slide-item-3:checked ~ .slider .bar{ margin-left: 50%; background: #1b781b;}
 .slidemenu #slide-item-4:checked ~ .slider .bar{ margin-left: 75%; background: #0d0d9f;}
+
+
+@media only screen and (max-width: 768px) {
+  .picture-content {
+    width: 80%;
+  }
+
+  .logo {
+    width: 70%;
+    min-width: 70%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .slidemenu {
+    margin-top: -30px;
+  }
+
+  .grid-content {
+    grid-template-rows: 10px 100vh;
+  }
+
+  [class*="tab"] {
+    height: 100vh;
+  }
+
+  .content {
+    margin-top: 10%;
+  }
+
+  .picture-content {
+    width: 80%;
+    padding: 0%;
+  }
+  
+  .height-picture {
+    max-width: 100%;
+  }
+
+  .width-picture {
+    width: 100%;
+  }
+}
 </style>
