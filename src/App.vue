@@ -15,7 +15,7 @@
           
           <!-- Item 3 -->
           <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
-          <label for="slide-item-3"><span @click="handleClick('tab3')">tapety</span></label>
+          <label for="slide-item-3"><span @click="handleClick('tab3')">tapetya</span></label>
           
           <!-- Item 4 -->
           <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
